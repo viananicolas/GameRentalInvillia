@@ -29,35 +29,24 @@ namespace GameRentalInvillia.Web.Services.JWT.Services
             ThrowIfInvalidOptions(_jwtOptions);
         }
 
-        public async Task<AccessToken> GenerateEncodedToken(Guid id, string email, string name, string[] roles)
+        public async Task<AccessToken> GenerateEncodedToken(string id, string email)
         {
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Iss, _jwtOptions.Issuer),
-                new Claim(JwtRegisteredClaimNames.Sub, id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Sub, id),
                 new Claim(JwtRegisteredClaimNames.Aud, _jwtOptions.Audience),
                 new Claim(JwtRegisteredClaimNames.Exp,
                     ToUnixExpDate(_jwtOptions.IssuedAt, _jwtOptions.ValidFor).ToString(), ClaimValueTypes.Integer64),
                 new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(),
                     ClaimValueTypes.Integer64),
                 new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
-
                 new Claim(JwtRegisteredClaimNames.Email, email),
-
-                new Claim(Constants.Strings.JwtClaimIdentifiers.UserId, id.ToString()),
-                new Claim(ClaimTypes.NameIdentifier, id.ToString()),
-
+                new Claim(Constants.Strings.JwtClaimIdentifiers.UserId, id),
+                new Claim(ClaimTypes.NameIdentifier, id),
                 new Claim(ClaimTypes.Email, email),
-                new Claim(ClaimTypes.GivenName, name),
 
             };
-
-            foreach (var role in roles)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, role));
-                claims.Add(new Claim(Constants.Strings.JwtClaimIdentifiers.Roles, role));
-            }
-
             var jwt = new JwtSecurityToken(
                 _jwtOptions.Issuer,
                 _jwtOptions.Audience,
@@ -69,7 +58,7 @@ namespace GameRentalInvillia.Web.Services.JWT.Services
             return new AccessToken(_jwtTokenHandler.WriteToken(jwt), (int) _jwtOptions.ValidFor.TotalSeconds);
         }
 
-        public Guid? ValidateToken(string token)
+        public string ValidateToken(string token)
         {
             if (_jwtOption.SecretKey == null)
             {
@@ -80,12 +69,7 @@ namespace GameRentalInvillia.Web.Services.JWT.Services
 
             var userId = claimsPrincipal?.FindFirst(ClaimTypes.NameIdentifier);
 
-            if (string.IsNullOrWhiteSpace(userId?.Value))
-            {
-                return null;
-            }
-
-            return Guid.Parse(userId.Value);
+            return string.IsNullOrWhiteSpace(userId?.Value) ? null : userId.Value;
         }
 
         private static long ToUnixEpochDate(DateTime iatDate)

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GameRentalInvillia.Application.Interface;
-using GameRentalInvillia.Application.ViewModel.Game;
 using GameRentalInvillia.Application.ViewModel.Rental;
 using GameRentalInvillia.Core.Common.Enum;
 using GameRentalInvillia.Core.Common.Extensions;

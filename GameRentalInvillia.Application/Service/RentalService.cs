@@ -39,6 +39,7 @@ namespace GameRentalInvillia.Application.Service
             var game = await _gameRepository.GetAsync(gameFormViewModel.GameId);
             if (game == null)
                 throw new Exception("No game found.");
+            CheckIfGameIsCurrentlyRented(game);
             var friend = await _friendRepository.GetAsync(gameFormViewModel.FriendId);
             if (friend == null)
                 throw new Exception("No friend found.");
@@ -53,6 +54,7 @@ namespace GameRentalInvillia.Application.Service
             var game = await _gameRepository.GetAsync(gameFormViewModel.GameId);
             if (game == null)
                 throw new Exception("No game found.");
+            CheckIfGameIsCurrentlyRented(game);
             var friend = await _friendRepository.GetAsync(gameFormViewModel.FriendId);
             if (friend == null)
                 throw new Exception("No friend found.");
@@ -70,6 +72,11 @@ namespace GameRentalInvillia.Application.Service
                 throw new Exception("No rental found.");
             rental.Delete();
             _rentalRepository.Update(rental);
+        }
+        private void CheckIfGameIsCurrentlyRented(Game game)
+        {
+            if (_rentalRepository.GetAll(e => e.Game.Id == game.Id && !e.ReturnDate.HasValue).Any())
+                throw new Exception("Game is currently being rented");
         }
         private static RentalViewModel DomainToViewModel(Rental rental)
         {
