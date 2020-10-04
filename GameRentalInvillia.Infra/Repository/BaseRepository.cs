@@ -23,6 +23,13 @@ namespace GameRentalInvillia.Infra.Repository
             await ApplicationDbContext.SaveChangesAsync();
 
             return entity;
+        }        
+        public TEntity Add(TEntity entity)
+        {
+            ApplicationDbContext.Set<TEntity>().Add(entity);
+            ApplicationDbContext.SaveChanges();
+
+            return entity;
         }
 
         public async Task<int> DeleteAllAsync()
@@ -63,6 +70,11 @@ namespace GameRentalInvillia.Infra.Repository
         {
             ApplicationDbContext.Set<TEntity>().UpdateRange(entities);
             return await ApplicationDbContext.SaveChangesAsync();
+        }        
+        public int Update(TEntity entities)
+        {
+            ApplicationDbContext.Set<TEntity>().UpdateRange(entities);
+            return ApplicationDbContext.SaveChanges();
         }
     }
 }

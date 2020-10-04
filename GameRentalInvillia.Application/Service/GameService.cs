@@ -27,9 +27,9 @@ namespace GameRentalInvillia.Application.Service
             return DomainToViewModel(await _gameRepository.GetAsync(id));
         }
 
-        public async void Add(GameFormViewModel gameFormViewModel)
+        public void Add(GameFormViewModel gameFormViewModel)
         {
-            await _gameRepository.AddAsync(ViewModelToDomain(gameFormViewModel));
+            _gameRepository.Add(ViewModelToDomain(gameFormViewModel));
         }
 
         public async void UpdateById(Guid id, GameFormViewModel gameFormViewModel)
@@ -42,7 +42,7 @@ namespace GameRentalInvillia.Application.Service
             game.Platform = gameFormViewModel.Platform;
             game.Publisher = gameFormViewModel.Publisher;
             game.ReleaseYear = game.ReleaseYear;
-            await _gameRepository.UpdateAsync(game);
+            _gameRepository.Update(game);
         }
 
         public async void DeleteById(Guid id)
@@ -50,8 +50,8 @@ namespace GameRentalInvillia.Application.Service
             var game = await _gameRepository.GetAsync(id);
             if (game == null)
                 throw new Exception("No game found.");
-            game.Delete();
-            await _gameRepository.UpdateAsync(game);
+            game.Delete(); 
+            _gameRepository.Update(game);
         }
         private static GameViewModel DomainToViewModel(Game game)
         {

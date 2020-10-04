@@ -42,7 +42,7 @@ namespace GameRentalInvillia.Application.Service
             var friend = await _friendRepository.GetAsync(gameFormViewModel.FriendId);
             if (friend == null)
                 throw new Exception("No friend found.");
-            await _rentalRepository.AddAsync(ViewModelToDomain(gameFormViewModel, friend, game));
+            _rentalRepository.Add(ViewModelToDomain(gameFormViewModel, friend, game));
         }
 
         public async void UpdateById(Guid id, RentalFormViewModel gameFormViewModel)
@@ -60,7 +60,7 @@ namespace GameRentalInvillia.Application.Service
             rental.ReturnDate = gameFormViewModel.ReturnDate;
             rental.Friend = friend;
             rental.Game = game;
-            await _rentalRepository.UpdateAsync(rental);
+            _rentalRepository.Update(rental);
         }
 
         public async void DeleteById(Guid id)
@@ -69,7 +69,7 @@ namespace GameRentalInvillia.Application.Service
             if (rental == null)
                 throw new Exception("No rental found.");
             rental.Delete();
-            await _rentalRepository.UpdateAsync(rental);
+            _rentalRepository.Update(rental);
         }
         private static RentalViewModel DomainToViewModel(Rental rental)
         {

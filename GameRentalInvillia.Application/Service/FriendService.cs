@@ -27,9 +27,9 @@ namespace GameRentalInvillia.Application.Service
             return DomainToViewModel(await _friendRepository.GetAsync(id));
         }
 
-        public async void Add(FriendFormViewModel friendFormViewModel)
+        public void Add(FriendFormViewModel friendFormViewModel)
         {
-            await _friendRepository.AddAsync(ViewModelToDomain(friendFormViewModel));
+            _friendRepository.Add(ViewModelToDomain(friendFormViewModel));
         }
 
         public async void UpdateById(Guid id, FriendFormViewModel friendFormViewModel)
@@ -41,7 +41,7 @@ namespace GameRentalInvillia.Application.Service
             friend.Email = friendFormViewModel.Email;
             friend.FullName = friendFormViewModel.FullName;
             friend.TelephoneNumber = friendFormViewModel.TelephoneNumber;
-            await _friendRepository.UpdateAsync(friend);
+            _friendRepository.Update(friend);
         }
 
         public async void DeleteById(Guid id)
@@ -50,7 +50,7 @@ namespace GameRentalInvillia.Application.Service
             if (friend == null)
                 throw new Exception("No friend found.");
             friend.Delete();
-            await _friendRepository.UpdateAsync(friend);
+            _friendRepository.Update(friend);
         }
 
         private static FriendViewModel DomainToViewModel(Friend friend)
