@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameRentalInvillia.Web", "GameRentalInvillia\GameRentalInvillia.Web.csproj", "{446CC38B-BE36-478E-B912-CC0051521270}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{EC3CDDDB-915D-440B-A646-86EFED0ADF2E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameRentalInvillia.Core", "GameRentalInvillia.Core\GameRentalInvillia.Core.csproj", "{4D3DDA47-8AEF-45C0-8E7D-AC06B7A60BC8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameRentalInvillia.Application", "GameRentalInvillia.Application\GameRentalInvillia.Application.csproj", "{8E8EC522-4EA3-4DC6-916F-85FF44894013}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameRentalInvillia.Infra", "GameRentalInvillia.Infra\GameRentalInvillia.Infra.csproj", "{01F6A8B3-17AF-4FAD-AC80-AED9C9D27D69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameRentalInvillia.ApplicationTests", "GameRentalInvillia.ApplicationTests\GameRentalInvillia.ApplicationTests.csproj", "{5250B50E-E2BF-4955-A803-D480D7EF7EA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{446CC38B-BE36-478E-B912-CC0051521270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{446CC38B-BE36-478E-B912-CC0051521270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{446CC38B-BE36-478E-B912-CC0051521270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{446CC38B-BE36-478E-B912-CC0051521270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC3CDDDB-915D-440B-A646-86EFED0ADF2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC3CDDDB-915D-440B-A646-86EFED0ADF2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC3CDDDB-915D-440B-A646-86EFED0ADF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC3CDDDB-915D-440B-A646-86EFED0ADF2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D3DDA47-8AEF-45C0-8E7D-AC06B7A60BC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D3DDA47-8AEF-45C0-8E7D-AC06B7A60BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D3DDA47-8AEF-45C0-8E7D-AC06B7A60BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D3DDA47-8AEF-45C0-8E7D-AC06B7A60BC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E8EC522-4EA3-4DC6-916F-85FF44894013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E8EC522-4EA3-4DC6-916F-85FF44894013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E8EC522-4EA3-4DC6-916F-85FF44894013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E8EC522-4EA3-4DC6-916F-85FF44894013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01F6A8B3-17AF-4FAD-AC80-AED9C9D27D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F6A8B3-17AF-4FAD-AC80-AED9C9D27D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F6A8B3-17AF-4FAD-AC80-AED9C9D27D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01F6A8B3-17AF-4FAD-AC80-AED9C9D27D69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5250B50E-E2BF-4955-A803-D480D7EF7EA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5250B50E-E2BF-4955-A803-D480D7EF7EA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5250B50E-E2BF-4955-A803-D480D7EF7EA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5250B50E-E2BF-4955-A803-D480D7EF7EA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D5BE11A-3A25-471D-9C53-B666A845BC3E}
+	EndGlobalSection
+EndGlobal
