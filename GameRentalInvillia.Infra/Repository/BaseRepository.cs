@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GameRentalInvillia.Infra.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameRentalInvillia.Infra.Repository
 {
@@ -40,7 +41,7 @@ namespace GameRentalInvillia.Infra.Repository
 
         public IEnumerable<TEntity> GetAll()
         {
-            return ApplicationDbContext.Set<TEntity>();
+            return ApplicationDbContext.Set<TEntity>().Where(e => !e.Deleted);
         }
 
         public IEnumerable<TEntity> GetAll(Func<TEntity, bool> fnc)
@@ -50,7 +51,7 @@ namespace GameRentalInvillia.Infra.Repository
 
         public async Task<TEntity> GetAsync(Guid id)
         {
-            return await ApplicationDbContext.Set<TEntity>().FindAsync(id);
+            return await ApplicationDbContext.Set<TEntity>().Where(e => !e.Deleted).FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public async Task<TEntity> GetAsync(TEntity entity)
