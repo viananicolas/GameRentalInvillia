@@ -5,10 +5,9 @@ using GameRentalInvillia.Web.Services.JWT.Interfaces;
 using GameRentalInvillia.Web.Services.JWT.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GameRentalInvillia.Web.Controllers
+namespace GameRentalInvillia.Web.Controllers.V1
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Route("api/v1/[controller]"), ApiController]
     public class AuthController : ControllerBase
     {
         private readonly IJwtFactory _jwtFactory;
@@ -21,22 +20,19 @@ namespace GameRentalInvillia.Web.Controllers
         }
 
         [HttpPost]
-        [Route("AccessTokenGenerate")]
         public async Task<AccessToken> AccessToken(AuthModel authModel)
         {
             var temp = await _jwtFactory.GenerateEncodedToken(authModel.Id, authModel.Email, authModel.Name, authModel.Roles);
             return temp;
         }
 
-        [HttpGet]
-        [Route("AccessTokenValidate")]
+        [HttpGet, Route("validate")]
         public Guid? AccessTokenValidate(string accessToken)
         {
             return _jwtFactory.ValidateToken(accessToken);
         }
 
-        [HttpGet]
-        [Route("RefreshTokenGenerate")]
+        [HttpGet, Route("refresh")]
         public string RefreshToken()
         {
             return _refreshTokenFactory.GenerateRefreshToken();

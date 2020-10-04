@@ -2,12 +2,12 @@
 using System.Threading.Tasks;
 using GameRentalInvillia.Application.Interface;
 using GameRentalInvillia.Application.ViewModel.Friend;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GameRentalInvillia.Web.Controllers
+namespace GameRentalInvillia.Web.Controllers.V1
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Route("api/v1/[controller]"), ApiController, Authorize]
     public class FriendController : ControllerBase
     {
         private readonly IFriendService _friendService;

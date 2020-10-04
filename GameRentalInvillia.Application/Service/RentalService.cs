@@ -75,6 +75,7 @@ namespace GameRentalInvillia.Application.Service
         {
             return new RentalViewModel
             {
+                Id = rental.Id,
                 RentalDate = rental.RentalDate,
                 ReturnDate = rental.ReturnDate,
                 FriendName = rental.Friend.FullName,

@@ -57,6 +57,7 @@ namespace GameRentalInvillia.Application.Service
         {
             return new GameViewModel
             {
+                Id = game.Id,
                 Developer = game.Developer,
                 GameName = game.GameName,
                 Platform = game.Platform.GetDescription(),

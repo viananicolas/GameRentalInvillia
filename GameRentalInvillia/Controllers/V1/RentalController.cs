@@ -2,12 +2,12 @@
 using System.Threading.Tasks;
 using GameRentalInvillia.Application.Interface;
 using GameRentalInvillia.Application.ViewModel.Rental;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GameRentalInvillia.Web.Controllers
+namespace GameRentalInvillia.Web.Controllers.V1
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Route("api/v1/[controller]"), ApiController, Authorize]
     public class RentalController : ControllerBase
     {
         private readonly IRentalService _rentalService;
