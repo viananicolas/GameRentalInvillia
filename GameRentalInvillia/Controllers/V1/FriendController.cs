@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GameRentalInvillia.Application.Interface;
 using GameRentalInvillia.Application.ViewModel.Friend;
@@ -16,12 +17,12 @@ namespace GameRentalInvillia.Web.Controllers.V1
         {
             _friendService = friendService;
         }
-        [HttpGet]
+        [HttpGet, Produces("application/json", Type = typeof(IEnumerable<FriendViewModel>))]
         public IActionResult GetAll()
         {
             return Ok(_friendService.GetAll());
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Produces("application/json", Type = typeof(FriendViewModel))]
         public async Task<IActionResult> GetById(Guid id)
         {
             return Ok(await _friendService.GetById(id));

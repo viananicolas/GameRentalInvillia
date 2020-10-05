@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GameRentalInvillia.Application.Interface;
 using GameRentalInvillia.Application.ViewModel.Game;
@@ -16,12 +17,12 @@ namespace GameRentalInvillia.Web.Controllers.V1
         {
             _gameService = gameService;
         }
-        [HttpGet]
+        [HttpGet, Produces("application/json", Type = typeof(IEnumerable<GameViewModel>))]
         public IActionResult GetAll()
         {
             return Ok(_gameService.GetAll());
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Produces("application/json", Type = typeof(GameViewModel))]
         public async Task<IActionResult> GetById(Guid id)
         {
             return Ok(await _gameService.GetById(id));

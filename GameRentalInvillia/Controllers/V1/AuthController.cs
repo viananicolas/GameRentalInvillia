@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using GameRentalInvillia.Application.ViewModel.Account;
 using GameRentalInvillia.Web.Services.JWT.Interfaces;
+using GameRentalInvillia.Web.Services.JWT.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,7 +27,7 @@ namespace GameRentalInvillia.Web.Controllers.V1
         }
 
 
-        [HttpPost]
+        [HttpPost, Produces("application/json", Type = typeof(AccessToken))]
         public async Task<IActionResult> Login(AuthModel authModel)
         {
             var user = await _userManager.FindByEmailAsync(authModel.Email);
@@ -39,13 +40,13 @@ namespace GameRentalInvillia.Web.Controllers.V1
             return Ok(temp);
         }
 
-        [HttpGet, Route("validate")]
+        [HttpGet, Route("validate"), Produces("application/json", Type = typeof(string))]
         public IActionResult AccessTokenValidate(string accessToken)
         {
             return Ok(_jwtFactory.ValidateToken(accessToken));
         }
 
-        [HttpGet, Route("refresh")]
+        [HttpGet, Route("refresh"), Produces("application/json", Type = typeof(string))]
         public IActionResult RefreshToken()
         {
             return Ok(_refreshTokenFactory.GenerateRefreshToken());

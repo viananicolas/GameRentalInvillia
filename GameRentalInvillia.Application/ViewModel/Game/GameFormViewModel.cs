@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using GameRentalInvillia.Core.Common.Enum;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace GameRentalInvillia.Application.ViewModel.Game
 {
@@ -13,7 +15,7 @@ namespace GameRentalInvillia.Application.ViewModel.Game
         public string Developer { get; set; }
         [Required]
         public string Publisher { get; set; }
-        [Required]
+        [Required, JsonConverter(typeof(StringEnumConverter))]
         public Platform Platform { get; set; }
     }
 }

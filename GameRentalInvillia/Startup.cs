@@ -20,6 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Converters;
 
 namespace GameRentalInvillia.Web
 {
@@ -74,7 +75,7 @@ namespace GameRentalInvillia.Web
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Game Rental Invillia API CRUD", Version = "v1" });
-
+                c.DescribeAllEnumsAsStrings();
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "Utilize o padrão de autenticação do JWT. Exemplo: \"Bearer {token}\"",
@@ -102,7 +103,9 @@ namespace GameRentalInvillia.Web
                 });
             });
             services.AddRouting(options => options.LowercaseUrls = true);
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.Converters.Add(new StringEnumConverter()));
+            services.AddSwaggerGenNewtonsoftSupport();
             RegisterServices(services);
         }
 
